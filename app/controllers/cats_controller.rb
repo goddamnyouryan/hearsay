@@ -13,6 +13,8 @@ class CatsController < ApplicationController
 		event.kind = "cat"
 		event.data = { "message" => "#{cat.message}" }
 		event.save!
+		cat.event_id = event.id
+		cat.save!
 		@user_stream = current_user.stream.paginate :page => params[:page], :order => "created_at desc"
 		render :update do |page|
 			if cat.private == "1"
@@ -31,8 +33,10 @@ class CatsController < ApplicationController
 	
 	def destroy
 		@cat = Cat.find(params[:id])
+		@event = Event.find(@cat.event_id)
 		@login = @cat.user.login
 		@cat.destroy
+		@event.destroy
 		redirect_to :controller => 'users', :action => 'show', :login => @login
 	end
 	

@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 		@answer = Answer.find(params[:answer])
 		@comment = @answer.comments.create(params[:comment])
 		@comment.user = current_user
-		@comment.save
+		@comment.save!
 		if @comment.answer.user == current_user
 			@comment.view!
 		end
@@ -17,13 +17,16 @@ class CommentsController < ApplicationController
 		event.kind = "comment"
 		event.data = { "message" => "#{@comment.message}", "answer" => "#{@comment.answer.message}", "answer_user" => "#{@comment.answer.user.login}" }
 		event.save!
+		
+		@comment.event_id = event.id
+		@comment.save!
   	
 	end
 	
 	def destroy
 		@answer = Answer.find(params[:cunt])
 		@comment = Comment.find(params[:poop])
-		@event = Event.find_by_kind_and_created_at("comment", @comment.created_at)
+		@event = Event.find(@comment.event_id)
 		@comment.destroy
 		@event.destroy
 		respond_to do |format|

@@ -16,6 +16,8 @@ class AnswersController < ApplicationController
 		unless answer.cat.user == current_user
 			AnswerMailer.deliver_new_answer(answer.cat.user, answer.user, answer.message)
 		end
+		answer.event_id = event.id
+		answer.save!
 		render :update do |page|
   		page.insert_html :bottom, "response_list", :partial => 'answers/new_answer', :locals => { :answer => answer }
   		page["answer_message"].clear
@@ -24,7 +26,9 @@ class AnswersController < ApplicationController
 	
 	def destroy
 		@answer = Answer.find(params[:poop])
+		@event = Event.find(@answer.event_id)
 		@answer.destroy
+		@event.destroy
 		respond_to do |format|
   		format.html { redirect_to root_url }
   		format.js
