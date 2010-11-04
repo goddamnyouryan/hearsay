@@ -174,7 +174,7 @@ end
 module Bundler
   ENV_LOADED   = true
   LOCKED_BY    = '0.9.26'
-  FINGERPRINT  = "7c4817562e5233d324ba808ed7a13d846c2ab38c"
+  FINGERPRINT  = "57eacf138f31cc7c317f73a3df80a8c2d4242b4a"
   HOME         = '/home/Ryan/.bundle/ruby/1.8/bundler'
   AUTOREQUIRES = {:default=>[["rake", false], ["aasm", false], ["activesupport", false], ["acts_as_state_machine", false], ["mime-types", false], ["aws-s3", false], ["capistrano-ext", false], ["configuration", false], ["json", false], ["contacts", false], ["json_pure", false], ["launchy", false], ["rest-client", false], ["heroku", false], ["hpricot", false], ["paperclip", false], ["pg", false], ["repeated_auto_complete", false], ["sqlite3", true], ["thin", false], ["will_paginate", false]]}
   SPECS        = [
@@ -207,8 +207,8 @@ module Bundler
         {:loaded_from=>"/usr/lib/ruby/gems/1.8/specifications/json_pure-1.2.3.gemspec", :load_paths=>["/usr/lib/ruby/gems/1.8/gems/json_pure-1.2.3/lib"], :name=>"json_pure"},
         {:loaded_from=>"/usr/lib/ruby/gems/1.8/specifications/launchy-0.3.5.gemspec", :load_paths=>["/usr/lib/ruby/gems/1.8/gems/launchy-0.3.5/lib"], :name=>"launchy"},
         {:loaded_from=>"/usr/lib/ruby/gems/1.8/specifications/rest-client-1.3.1.gemspec", :load_paths=>["/usr/lib/ruby/gems/1.8/gems/rest-client-1.3.1/lib"], :name=>"rest-client"},
-        {:loaded_from=>"/home/Ryan/.bundle/ruby/1.8/specifications/heroku-1.8.5.gemspec", :load_paths=>["/home/Ryan/.bundle/ruby/1.8/gems/heroku-1.8.5/lib"], :name=>"heroku"},
-        {:loaded_from=>"/home/Ryan/.bundle/ruby/1.8/specifications/hpricot-0.8.2.gemspec", :load_paths=>["/home/Ryan/.bundle/ruby/1.8/gems/hpricot-0.8.2/lib"], :name=>"hpricot"},
+        {:loaded_from=>"/usr/lib/ruby/gems/1.8/specifications/heroku-1.8.3.gemspec", :load_paths=>["/usr/lib/ruby/gems/1.8/gems/heroku-1.8.3/lib"], :name=>"heroku"},
+        {:loaded_from=>"/home/Ryan/.bundle/ruby/1.8/specifications/hpricot-0.8.3.gemspec", :load_paths=>["/home/Ryan/.bundle/ruby/1.8/gems/hpricot-0.8.3/lib"], :name=>"hpricot"},
         {:loaded_from=>"/home/Ryan/.bundle/ruby/1.8/specifications/paperclip-2.3.5.gemspec", :load_paths=>["/home/Ryan/.bundle/ruby/1.8/gems/paperclip-2.3.5/lib"], :name=>"paperclip"},
         {:loaded_from=>"/home/Ryan/.bundle/ruby/1.8/specifications/pg-0.9.0.gemspec", :load_paths=>["/home/Ryan/.bundle/ruby/1.8/gems/pg-0.9.0/lib", "/home/Ryan/.bundle/ruby/1.8/gems/pg-0.9.0/ext"], :name=>"pg"},
         {:loaded_from=>"/home/Ryan/.bundle/ruby/1.8/specifications/rails-2.3.8.gemspec", :load_paths=>["/home/Ryan/.bundle/ruby/1.8/gems/rails-2.3.8/lib"], :name=>"rails"},

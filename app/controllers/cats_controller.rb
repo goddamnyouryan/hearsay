@@ -31,10 +31,8 @@ class CatsController < ApplicationController
 	
 	def destroy
 		@cat = Cat.find(params[:id])
-		@event = Event.find_by_kind_and_created_at("cat", @cat.created_at)
 		@login = @cat.user.login
 		@cat.destroy
-		@event.destroy
 		redirect_to :controller => 'users', :action => 'show', :login => @login
 	end
 	

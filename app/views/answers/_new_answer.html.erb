@@ -2,9 +2,9 @@
 		<% if logged_in? %>
 			
 			<% if answer.state =="unread" && answer.cat.user == current_user %>
-				<li class="unread_answer" id ="<%= answer.id %>_hover_id">
+				<li class="unread_answer" id ="<%= answer.id %>">
 			<% else %>
-				<li id ="<%= answer.id %>_hover_id">
+				<li id ="<%= answer.id %>">
 			<% end %>	
 			
 		<% else %>

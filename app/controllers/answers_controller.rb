@@ -24,9 +24,7 @@ class AnswersController < ApplicationController
 	
 	def destroy
 		@answer = Answer.find(params[:poop])
-		@event = Event.find_by_kind_and_created_at("answer", @answer.created_at)
 		@answer.destroy
-		@event.destroy
 		respond_to do |format|
   		format.html { redirect_to root_url }
   		format.js

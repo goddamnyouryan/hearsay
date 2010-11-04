@@ -340,6 +340,7 @@ div#notifications {
 	background: #fffed2;
 	width: 360px;
 	padding: 5px;
+	margin-bottom:25px;
 }
 
 div#notifications ul { margin-bottom: 10px; }
@@ -464,7 +465,7 @@ background: #d6d6d6;
 
 .add_friend:hover { cursor:pointer; outline:1px solid #00331C; }
 
-ul#profile_stream { width: 370px; background:#d6d6d6;padding:10px 0;float:left; }
+ul#profile_stream { width: 370px; background:#d6d6d6;padding:10px 0;float:left; margin-bottom:25px;}
 
 ul#profile_stream li { list-style-position:inside;margin:0 0 7px 10px; }
 
