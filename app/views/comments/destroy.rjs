@@ -1,0 +1,2 @@
+page["#{@comment.answer.id}_#{@comment.id}"].remove
+page.replace_html "comments_view_toggle_#{@answer.id}", :partial => 'cats/hide', :locals => { :answer => @answer }

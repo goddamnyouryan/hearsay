@@ -1,0 +1,6 @@
+	<% form_remote_for Comment.new do |f| %>
+			<%= hidden_field_tag(:answer, answer.id)%>
+			<%= hidden_field_tag(:user_id, current_user.id)%>
+			<%= f.text_area :message, :value => "comment...", :onfocus => "this.value=''" %><br />
+			<%= f.submit "comment", :disable_with => 'commenting...', :class => "button", :style => "float:right;margin-top:3px;" %>
+	<% end %>

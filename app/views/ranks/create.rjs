@@ -1,0 +1,2 @@
+page.replace_html "#{@image.id}_vote_score", "#{@image.reload.ranks.size}"
+page.replace_html "#{@image.id}_vote_form", "+"

@@ -1,0 +1,14 @@
+<% @public_stream.each do |c| %>
+<li class="event_cat">
+	<%= link_to "#{c.user.login}", :controller => 'users', :action => 'show', :login => c.user.login %> 
+	created a new category:	
+	<h3 style="color:#00331a;">
+		<%= render :partial => "events/image", :locals => { :event => c } %> 
+		<%= c.message %> 
+		<span class="timeago"><%= distance_of_time_in_words_to_now(c.created_at) %> ago</span>
+	</h3>
+</li>
+
+<div style="width:100%; border-bottom: 1px solid;margin:20px 0;"></div>
+
+<% end %>

@@ -1,0 +1,68 @@
+<%= title "#{@cat.user.login}'s category - #{@cat.message}" %>
+
+<%= render :partial => 'image' %>
+	
+	<h2 style="font-weight:normal !important; margin: -10px 0 0 5px;float:left;">
+		<%= @cat.message %>
+		<% if @cat.user == current_user %>
+			<% if @cat.state == "private" %>
+				<span id="cat_toggle"><%= render :partial => 'make_public' %></span>
+			<% else %>
+				<span id="cat_toggle"><%= render :partial => 'make_private' %></span>
+			<% end %>
+		<% else %>
+			<% if @cat.state == "private" %>
+				<%= image_tag("private_icon.png", :style => "position:relative;top:8px;", :alt => @private_alt, :title => @private_alt) %>
+			<% else %>
+				<%= image_tag("public_icon.png", :alt => @public_alt, :title => @public_alt, :style => "position:relative;
+top:8px;") %>
+			<% end %>
+	<% end %>
+	</h2>
+	
+	<div class="clear"></div>
+	
+	<h3 style="margin-left: 75px; font-size: 14px;"><%= distance_of_time_in_words_to_now(@cat.created_at)%> ago by <%= link_to @user.login, :controller => 'users', :action => 'show', :login => @user.login %></h3>
+
+
+<div class="clear"></div>
+
+<div style="margin-left:75px">
+
+<h3 style="border-bottom:1px solid; margin: 15px 0;float:left;width:700px;"><%= pluralize(@cat.answers.count, "response") %></h3>
+
+<ul id="response_list">
+	<%= render :partial=>'answers/answer' %>  
+</ul>
+
+<div style="float:right;">
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-8909561621860243";
+	/* 160x600, created 7/30/10 */
+	google_ad_slot = "9617026026";
+	google_ad_width = 160;
+	google_ad_height = 600;
+	//-->
+	</script>
+	<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+</div>
+
+<%	unless !logged_in? %>
+
+	<% form_remote_for Answer.new do |f| %>
+		<%= hidden_field_tag(:cat_id, @cat.id)%>
+		<%= hidden_field_tag(:user_id, current_user.id)%>
+		<%= f.text_area :message, :value => "new response...", :onfocus => "this.value=''" %><br />
+		<%= f.submit "respond", :disable_with => 'responding...', :class => "button", :style => "margin-top: 3px;float:right;" %>
+	<% end %>
+
+<% else %>
+
+<div style="Float:left;">
+<%= link_to "login", :controller => :sessions, :action => :new, :return_to => request.request_uri %> to submit a new response
+</div>
+<% end %>
+
+</div>

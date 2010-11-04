@@ -1,0 +1,13 @@
+<% unless @user.requested_friends.empty? %>
+	<h3>friendships requested(<%= @user.requested_friends.count %>)</h3>
+	<% @user.requested_friends.each do |u| %>
+		<%= render :partial => 'friends/meta', :locals => { :user => u } %>
+		<div class="clear"></div>
+	<% end %>
+
+
+
+<% end %>
+
+
+<div class="clear"></div>

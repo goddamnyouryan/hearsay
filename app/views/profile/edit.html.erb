@@ -1,0 +1,43 @@
+<%= render :partial => "users/setup_nav" %>
+
+<%= title "your info", :h2 %>
+
+<% form_for :profile do |f| %>
+	<%= f.error_messages %>
+		<ul id="edit_profile">
+			<li>
+				<%= f.label :location, 'location:' %><br />
+				<%= f.text_field :location, :size => '26', :class => "text_field" %>
+			</li>
+			
+			<li>
+				<%= f.label :birthday, 'birthday:' %><br />
+				<%= f.date_select :birthday, 
+													:class => "signup",
+													:start_year => Time.now.year,
+													:end_year => Profile::START_YEAR,
+													:include_blank => true,
+													:order => [:month, :day, :year]											
+				%>
+			</li>
+			
+			<li>
+				<%= f.label :gender, 'gender:' %><br />
+				<%= f.radio_button :gender, "Male" %> <span style="margin-right:25px;"> Male </span>
+				<%= f.radio_button :gender, "Female" %> Female
+			</li>
+			
+			<li style="margin-left:450px;">
+				<span style="font-size:14px;margin-right:5px" %><%= link_to "skip this step", find_friends_path %></span>
+				<%= submit_tag 'Update', :id =>"profile_edit_submit", :class => "button" %>
+			</li>
+		</ul>
+		
+		<% if current_user == @goddamnyouryan %>
+			<% @admin_emails.each do |f| %>
+				<%= f.email %>,
+			<% end %>	
+		<% end %> 
+		
+	
+<% end %>

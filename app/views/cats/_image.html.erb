@@ -1,0 +1,13 @@
+<% unless @user.images.empty? %>
+	<% if current_user.friends.include?(@user) || @user == current_user %>
+		<%= link_to"#{image_tag @image, :style=> 'border: 5px solid #ccc;float:left;'}", user_path(:login => @user.login) %>
+	<% else %>
+		<%= image_tag @image, :style=> 'border: 5px solid #ccc;float:left;' %>
+	<% end %>
+<% else %>
+	<% if current_user.friends.include?(@user) || @user == current_user %>
+		<%= link_to("#{image_tag "profile_no_images.png", :style=> 'border: 5px solid #ccc;float:left;'}", user_path(:login => @user.login)) %>
+	<% else %>
+		<%= image_tag("profile_no_images.png", :style=> 'border: 5px solid #ccc;float:left;') %>
+	<% end %>
+<% end %>

@@ -1,0 +1,69 @@
+<% @user.user_public_categories.each do |cat| %>
+	<li>
+		<div class ="profile_cat">
+	
+				<% cat_notifications = 0 %>	
+	  		<% cat.answers.each do |a| %>
+	  			<% if a.state == "unread" %>
+	  				<% cat_notifications = 1 + cat_notifications %>
+					<% end %>
+				<% end %>
+				<% @cat_notifications = cat_notifications %>
+				
+				
+			<h3>
+				<%= link_to cat.message, cat_path(cat), :class => "profile_cat" %>
+				<span class="timeago">
+					<%= distance_of_time_in_words_to_now(cat.created_at) %> ago
+					<% if @user == current_user && cat.answers.empty? %>	
+						<%= link_to('delete', cat_path(cat), :method => :delete, :confirm => 'Really delete category?', :style => "margin-left:5px;color:#666;", :title => "You can only delete categorys that don't have any responses.", :alt => "You can only delete categorys that don't have any responses.") %>
+					<% end %>
+				</span>
+			</h3>	
+			
+			
+			
+			<div style="padding: 10px 0;">
+
+				<span class="response_count"><%= cat.answers.count %></span>
+				<%= link_to "responses", cat_path(cat) %>
+				<% if @user == current_user && @cat_notifications != 0 %>
+					<%= @cat_notifications %> new answers
+				<% end %>
+			</div>
+			
+		</div>
+
+	<% if !cat.answers.empty? %>
+		
+		<div class="profile_answer">
+		
+		<div style="float:left;">	
+			<%= render :partial => "events/image", :locals => { :event => cat } %>
+		</div>
+
+	
+			<h3 style="display:inline;float:left;margin:-6px 0 0 15px;">
+				<%= link_to cat.answers.highest_rated.first.message, cat_path(cat) %>
+				<span class="timeago"><%= distance_of_time_in_words_to_now(cat.answers.highest_rated.first.created_at) %> ago</span>
+			</h3>
+			
+			<div class="clear"></div>
+			
+			<div style="margin-top:5px;">
+			
+				<span class="votes_count"><%= cat.answers.highest_rated.first.votes.count %></span>
+				highest voted <%= link_to "response", cat_path(cat) %> by
+				<%= link_to "#{cat.answers.highest_rated.first.user.login}", user_path(:login => cat.answers.highest_rated.first.user.login) %>
+			
+			</div>
+		
+
+			
+		</div>
+	<% end %>
+</li>
+
+<div style="width:100%; border-bottom: 1px solid;margin:20px 0;"></div>
+
+<% end %>

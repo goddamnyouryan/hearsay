@@ -1,0 +1,18 @@
+<span id ="<%= user.id %>">
+	<% if logged_in? %>
+			<% if current_user == user || current_user.friends.include?(user) %>
+		<% elsif current_user.requested_friends.include?(user) %>
+			Friendship request pending.	
+		<% elsif current_user.pending_friends.include?(user) %>
+			<%= link_to 'Accept Friendship', user_friend_path(:user_id => current_user, :id => user.id), :method => :put, 
+						:confirm => 'Accept friend request! Are you sure?', :class => "button" %>				
+			<%= link_to 'Reject', user_friend_path(:user_id => current_user, :id => user.id), :method => :delete, 
+						:confirm => 'Reject friend request! Are you sure?', :class => "button" %>
+		<% else %>
+			<% remote_form_for(:friendship, :url => user_friends_path(:user_id => current_user.id, :friend_id => user.id), :html => { :style => "display:inline;margin-left:5px;" }) do |f| %>
+				<%= submit_tag "+ add friend", :class => 'add_friend' %>
+				<%= image_tag("loader-light-grey.gif", :id => "busy", :style => "border:none;float:right;margin:3px 0 0 3px; display:none;") %>
+			<% end %>
+		<% end %>	
+	<% end %>
+</span>

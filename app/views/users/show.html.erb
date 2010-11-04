@@ -1,0 +1,60 @@
+	<%= title "#{@user.login}'s profile" %>
+	
+	<h2 style="float:left;"><%= @user.login %></h2>
+	
+	<span style="float:left;margin:20px 0 0 7px;"><%= render :partial => 'friends/friend', :locals => { :user => @user } %></span>
+	
+	<div class="clear"></div>
+	
+	<div class="left_side">
+
+	<%= render :partial => 'profile/profile' %>
+	
+	<h3 style="color:#00331C;">Recent Activity</h3>
+	<ul id="profile_stream">
+		<%= render :partial => 'stream' %>
+		<%= link_to "view all activity", user_events_path(@user), :style => "float:right;margin-right:10px;" %>
+	</ul>
+	
+	<div class="clear"></div>
+	
+	<% if current_user.friends.include?(@user) %>
+						<span id="friendship_response">
+						<%= link_to('Remove from friends', user_friend_path(:user_id => current_user, :id => @user.id), :method => :delete, :confirm => 'Really remove them from friends?') %>
+	<% end %>
+	
+	<div class="clear"></div>
+
+	<%= render :partial => 'home/ads' %>
+
+</div>
+<div class="right_side">
+	
+	<% if current_user.friends.include?(@user) || @user == current_user %>
+		
+	<h3 style="border-bottom:1px solid;margin-bottom:15px;">
+		<%= pluralize @user.cats.size, "category" %>
+	</h3>
+
+		<ul id="profile_cats_list">
+			<%= render :partial => 'cat' %>
+		</ul>
+
+<% unless @cats.current_page >= @cats.total_pages %>
+		<a id="more_cats" onclick="moreCats()"><%= image_tag("downarrow.png",:style => "margin-right:5px;") %>load more categories</a>
+		<%= image_tag("loader-green.gif", :style => "border:none;display:none;margin:-24px 198px 0 0;float:right;", :id => "more") %>
+		
+<% end %>
+	
+	<% else %>
+	
+	<h3 style="border-bottom:1px solid;margin-bottom:15px;">
+		<%= pluralize @user.user_public_categories.size, "public category" %>
+	</h3>
+
+	<ul id="profile_cats_list">
+		<%= render :partial => 'public_cats' %>
+	</ul>
+	
+	<% end %>
+  

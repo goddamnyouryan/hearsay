@@ -1,0 +1,3 @@
+page.insert_html :bottom, "comment_list_#{@answer.id}", :partial => 'newcomment', :locals => { :comment => @comment }
+page[:new_comment].reset
+page.replace_html "comments_view_toggle_#{@answer.id}", :partial => 'cats/hide', :locals => { :answer => @comment.answer }

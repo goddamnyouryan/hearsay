@@ -1,0 +1,19 @@
+<% if logged_in? %>
+	<span id="<%= answer.id %>_vote_form" class ="voted_on hover" style="float: right;">
+		<% if voted_on(answer) %>
+			✔
+		<% else%>
+			<% form_remote_for [ answer, Vote.new ] do |f| %>
+				<% if answer.user == current_user %>
+					<span id="own_answer">can't vote on your own answer!</span>
+				<% else %>
+					<%= f.submit "✔" %>
+				<% end %>
+			<% end %>
+		<% end %>
+	</span>
+<% else %>
+	<span style="float: right;">
+		<%= link_to "login", :controller => :session, :action => :new, :return_to => request.request_uri %> to vote
+	</span>
+<% end %>	

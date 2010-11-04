@@ -1,0 +1,88 @@
+<% unless @notifications == 0 %>
+<h3 style="color:#00331C;">Notifications</h3>
+	<div id="notifications">
+
+<% unless current_user.pending_friends.empty? %>
+<p><%= @friend_request_notifications %> new friend requests:
+	
+	<ul>
+		  	<% current_user.pending_friends.each do |r| %>
+			  			<li id="friend"><%= link_to "#{r.login}", user_path(:login => r.login) %> wants to be friends <span class="small_timeago"><%= distance_of_time_in_words_to_now(r.created_at) %> ago</span></li>
+		  <% end %>
+	</ul>
+</p>
+<% end %>
+
+
+<% unless @friend_notifications == 0 %>
+<p><%= @friend_notifications %> new friends:
+	
+	<ul>
+		  	<% @user.friendships.each do |f| %>
+			  		<% if f.state == "unread" %>
+			  			<li id="friend"><%= link_to "#{f.friend.login}", user_path(:login => f.friend.login) %> accepted your friendship request. </li>
+			  		<% end %>
+		  <% end %>
+	</ul>
+</p>
+<% end %>
+
+<% unless @answer_notifications == 0 %>
+<p><%= @answer_notifications %> new responses:
+	
+	<ul>
+		  	<% @user.cats.each do |c| %>
+		  		<% c.answers.each do |n| %>
+			  		<% if n.state == "unread" %>
+			  			<li id="response"><%= link_to "#{n.user.login}", user_path(:login => n.user.login) %> responded to your <%= link_to "category", cat_path(c) %> <span class="small_timeago"><%= distance_of_time_in_words_to_now(n.created_at) %> ago</span></li>
+			  		<% end %>
+			  	<% end %>
+		  	<% end %>
+	</ul>
+</p>
+<% end %>
+
+	<% unless @comment_notifications == 0 %>
+	<p><%= @comment_notifications %> new comments:
+		
+	<ul>
+		  	<% @user.answers.each do |a| %>
+		  		<% a.comments.each do |c| %>
+			  		<% if c.state == "unread" %>
+			  			<li id="comment"><%= link_to "#{c.user.login}", user_path(:login => c.user.login) %> commented on your 
+			  				<% if a.cat.user == current_user %>
+			  					<%= link_to "response to your category", cat_path(a.cat) %> 
+			  				<% else %>
+			  					<%= link_to "response to #{a.cat.user.login}'s category", cat_path(a.cat) %>
+			  				<% end %>
+			  				<span class="small_timeago"><%= distance_of_time_in_words_to_now(c.created_at) %> ago</span>
+			  			</li>
+			  		<% end %>
+			  	<% end %>
+		  	<% end %>
+	</ul>
+</p>
+
+<% end %>
+
+	<% unless @image_notifications == 0 %>
+	<p><%= @image_notifications %> new photos:
+		
+	<ul>
+		  	<% @user.images.each do |i| %>
+			  		<% if i.state == "unread" %>
+			  			<% friend = User.find(i.friend_id) %>
+			  			<li id="image"><%= link_to "#{friend.login}", user_path(:login => @user.login) %> uploaded
+			  					<%= link_to "a photo of you", user_images_path(current_user) %> 
+			  				<span class="small_timeago"><%= distance_of_time_in_words_to_now(i.created_at) %> ago</span>
+			  			</li>
+			  	<% end %>
+		  	<% end %>
+	</ul>
+</p>
+
+<% end %>
+</div>
+<% end %>
+
+

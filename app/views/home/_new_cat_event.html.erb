@@ -1,0 +1,11 @@
+<li class="event_cat">
+	<%= link_to "#{cat.user.login}", :controller => 'users', :action => 'show', :login => cat.user.login %> 
+	created a new category:	
+	<h3 style="color:#00331a;">
+		<%= render :partial => "events/image", :locals => { :event => cat } %> 
+		<%= cat.message %> 
+		<span class="timeago"><%= distance_of_time_in_words_to_now(cat.created_at) %> ago</span>
+	</h3>
+</li>
+
+<div style="width:100%; border-bottom: 1px solid;margin:20px 0;"></div>

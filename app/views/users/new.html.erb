@@ -1,0 +1,40 @@
+<% @user.password = @user.password_confirmation = nil %>
+<%= title "Signup" %>
+
+<h1 id="splash">HEARSAY</h1>
+<h2>sign up</h2>
+
+<% form_for @user do |f| %>
+	<%= f.error_messages %>
+		<ul id="signup_form">
+			<li>
+				<%= f.label :name, 'full name' %><br />
+				<%= f.text_field :name, :class => "signup" %>
+				<span>entering your name will help your friends to find you.</span>
+			</li>
+			<li>
+				<%= f.label :email, 'email' %><br />
+				<%= f.text_field :email, :class => "signup" %>
+				<span>enter your real email address as we will send you an email toconfirm your account.</span>
+			</li>
+			<li>
+				<%= f.label :login, 'username' %><br />
+				<%= f.text_field :login, :class => "signup" %>
+				<span>your profile’s url will be: http://thisishearsay.com/username</span>
+			</li>
+			<li>
+				<%= f.label :password, 'password' %><br />
+				<%= f.password_field :password, :class => "signup" %>
+			</li>
+			<li>
+				<%= f.label :password_confirmation, 'confirm password' %><br />
+				<%= f.password_field :password_confirmation, :class => "signup" %>
+			</li>
+			<li>
+				By clicking "Sign Up!" you confirm that you have read and agree to our <%= link_to 'terms of service.', terms_path %><br />
+				<%= submit_tag 'Sign up!', :id => "user_submit", :class => "button" %>
+			</li>
+		</ul>
+<% end %>
+
+<div class="clear"></div>

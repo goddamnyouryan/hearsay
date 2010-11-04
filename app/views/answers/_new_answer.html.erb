@@ -1,0 +1,71 @@
+	<div class="hover_hover">
+		<% if logged_in? %>
+			
+			<% if answer.state =="unread" && answer.cat.user == current_user %>
+				<li class="unread_answer" id ="<%= answer.id %>_hover_id">
+			<% else %>
+				<li id ="<%= answer.id %>_hover_id">
+			<% end %>	
+			
+		<% else %>
+			<li id ="<%= answer.id %>_hover_id">
+		<% end %>
+		
+		<div style="float:left;width:580px;">
+			<h3 style="margin-bottom:35px;color:#00331C;">
+			<%= h answer.message %><br />
+			<% answer_notifications = 0 %>	
+			<% answer.comments.each do |c| %>
+				<% if c.state == "unread" %>
+					<% answer_notifications = 1 + answer_notifications %>
+				<% end %>
+				<% @answer_notifications = answer_notifications %>
+				<% if logged_in? && answer.user == current_user && @answer_notifications != 0 %>
+					<span style="background:#FFFED2;font-size:14px;padding:3px;"><%= pluralize(@answer_notifications, "new comment") %></span>
+				<% end %> 
+			<% end %>
+			</h3>
+			
+			
+
+			<span style="float:left;">
+				<%= render :partial => "events/image", :locals => { :event => answer } %>
+			</span>
+			
+			<span style="float:left;margin: 6px 0 0 6px;">
+				<%= link_to "#{answer.user.login}", user_path(:login => answer.user.login) %>
+				
+			<span class="timeago">
+					<%= distance_of_time_in_words_to_now(answer.created_at) %> ago &nbsp;
+					<% if current_user.id == answer.user_id %>
+						<a onclick="if (confirm('delete this comment?')) { new Ajax.Request('/answers/destroy?poop=<%= answer.id %>', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('C7HfMP3wgMuszJkKmRMSn9zoO2xXXtS181OmG/jzoXg=')}); }; return false;" href="#">delete</a>
+					<% end %>		
+			</span>
+			
+			<span id="<%= answer.id %>_vote_score" class="votes_count hover" style="margin: 0 5px !important;position:relative;top:3px;">
+					<%= answer.votes.size %>
+				</span>
+			
+		<span id="comments_view_toggle_<%= answer.id %>" class="comments_view_toggle hover">
+			<% if logged_in? %>
+				<%= render :partial => 'cats/reveal', :locals => { :answer => answer }  %>
+			<% else %>
+				<%= link_to "show comments (#{answer.comments.count})", :controller => :session, :action => :new, :return_to => request.request_uri %>
+			<% end %>	
+		</span>
+		
+		</span>
+	</div>
+	
+			<%= render :partial => 'answers/vote', :locals => { :answer => answer }  %>
+		
+		</li>
+		
+		<div id="comment">
+			<ul id="comment_list_<%= answer.id %>" class="comment_list"></ul>
+			
+			<div id="new_comment_form_<%= answer.id %>" class="new_comment_form"></div>
+		</div>
+		<div class="clear"></div>	
+			<div style="width:100%; border-bottom: 1px solid;margin:0 0 20px 0;"></div>
+	</div>

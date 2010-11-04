@@ -1,0 +1,20 @@
+		
+<% unless @user.friends.empty? %>
+	
+	<% @user.friends.each do |u| %>
+		<%= render :partial => 'friends/meta', :locals => { :user => u } %>
+		<div class="clear"></div>
+	<% end %>
+
+
+
+<% else %>
+No friends. What a loser you are. Why don't you try searching for some? Or try <%= link_to "searching your email contacts", find_friends_path %>
+<% end %>
+
+
+<div class="clear"></div>
+	
+	
+			
+

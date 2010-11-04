@@ -1,0 +1,38 @@
+<%= title "#{@user.login}'s Photos" %>
+
+<h2>
+	<%= link_to "#{@user.login}'s", user_path(:login => @user.login) %> Pictures
+</h2>
+
+<h3>upload a photo of <%= link_to "#{@user.login}", user_path(:login => @user.login) %>:</h3>
+<% form_for :image, :html => {:multipart => true} do |f| %>
+	<%= f.hidden_field :user_id, :value => @user.id %>
+	<%= f.hidden_field :friend_id, :value => current_user.id %>
+
+<p>
+<%= f.file_field :photo %>
+<%= f.submit "Submit", :class => "button" %>
+</p>
+
+<% end %>
+
+<ul id="images_list">
+	<%= render :partial => 'image', :collection => @user.images.in_order_of_ranking %>
+</ul>
+
+<div style="float:right;text-align:right;margin-top:27px;">
+	<h3>advertisement</h3>
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-8909561621860243";
+	/* 160x600, created 7/30/10 */
+	google_ad_slot = "9617026026";
+	google_ad_width = 160;
+	google_ad_height = 600;
+	//-->
+	</script>
+	<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+</div>
+
+<div class="clear"></div>

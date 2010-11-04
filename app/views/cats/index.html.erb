@@ -1,0 +1,12 @@
+
+
+<% form_for Cat.new do |f| %>
+	<%= f.text_area :message %>
+	<%= f.submit "Submit", :disable_with => 'Submiting...' %>
+<% end %>
+
+	<ul>
+<% current_user.cats.reverse.each do |cat| %>
+		<li><%= h cat.message %></li>
+<% end %>
+	</ul>

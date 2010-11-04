@@ -1,0 +1,50 @@
+<%= title "Welcome Home #{current_user.login}"  %>
+
+<h2><%= @user.login %></h2>
+
+<div class="left_side">
+
+	<%= render :partial => 'profile/profile' %>
+	
+	<%= render :partial => 'notifications' %>
+	
+	<div class="clear"></div>
+	
+	<%= render :partial => 'ads' %>
+
+</div>
+
+
+<div class="right_side">
+
+	<% form_remote_for Cat.new do |f| %>
+		<%= f.text_area :message, :value => "create a new profile category...", :onfocus => "this.value=''" %><br />
+		<div style="margin-top: 11px;float:left;">at a loss for what to put here? Get some <%= link_to "suggestions.", suggestions_path %></div>
+		<span style="float:right; margin-top: 3px;" title="Private categories only your friends can view and respond.  Public categories anyone can view." alt="Private categories only your friends can view and respond.  Public categories anyone can view." >
+			public category <%= f.check_box :private %>
+			<%= f.submit "create category", :disable_with => 'creating...', :class => 'button' %>
+		</span>
+	<% end %>
+		
+	<div class="clear"></div>
+	
+	<span id="stream_toggle">
+		<%= render :partial => 'public_toggle' %>
+	</span>
+	
+	<%= image_tag("loader.gif", :id => "busy", :style => "border:none;float:right;margin-top:-16px; display:none;") %>
+	
+	<div class="clear"></div>
+	
+	<ul id="stream">
+		
+		<%= render :partial => 'stream' %>
+	
+	</ul>
+	
+	<div class="clear"></div>
+	
+	<%= render :partial => "friends_pagination" %>
+	<%= image_tag("loader-green.gif", :style => "border:none;display:none;margin:-24px 198px 0 0;float:right;", :id => "more") %>
+
+</div>

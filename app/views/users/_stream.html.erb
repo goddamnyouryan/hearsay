@@ -1,0 +1,66 @@
+<% @user_stream.each do |event| %>
+	<li>
+		<% if event.kind == "cat" %>
+			<% @message = event.data["message"] %>
+			<% @cat = Cat.find_by_message(@message) %>
+  		<li id="cat">
+  			created a new <%= link_to "category", cat_path(@cat) %>
+  			<span class="small_timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
+  		</li>
+  	<% end %>
+  		
+  	<% if event.kind == "answer" %>
+			<% @cat_user = event.data["cat_user"] %>
+			<% @category = event.data["category"] %>
+			<% @cat = Cat.find_by_message(@category) %>
+			<li id="response">
+				responded to 
+				<%= link_to "#{@cat_user}'s", :controller => 'users', :action => 'show', :login => @cat_user %>
+				<%= link_to "category", cat_path(@cat) %>
+				<span class="small_timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
+			</li>
+  	<% end %>
+  	
+  	<% if event.kind == "comment" %>
+  		<% @answer_user = event.data["answer_user"] %>
+			<% @com_answer = event.data["answer"] %>
+			<% @answer = Answer.find_by_message(@com_answer) %>
+			<% @cat = @answer.cat %>
+			
+				<li id="comment">
+					commented on 
+					<%= link_to "#{@answer_user}'s", :controller => 'users', :action => 'show', :login => @answer_user %>
+					<%= link_to "response", cat_path(@cat) %>
+					<span class="small_timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
+				</li>		
+  	<% end %>
+  	
+  	<% if event.kind == "friend" %>
+	  	<% @friend = event.data["friend"] %>
+				<li id="friend">
+					is now friends with <%= link_to "#{@friend}", :controller => 'users', :action => 'show', :login => @friend %>
+					<span class="small_timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
+				</li>	
+  	<% end %>
+  	
+  	<% if event.kind == "photo" %>
+	  	<% @uploader = event.data["uploader"] %>
+	  	<% if @uploader == event.user.login %>
+				<li id="image">
+					uploaded a <%= link_to "picture", user_images_path(event.user) %> of themselves
+					<span class="small_timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span> 
+				</li>
+			<% else %>
+				<li id="image">
+				<%= link_to "#{@uploader}", :controller => 'users', :action => 'show', :login => @uploader %> 
+					uploaded a <%= link_to "picture", user_images_path(event.user) %> of them
+					<span class="small_timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
+				</li>	
+  		<% end %>
+  	<% end %>
+  	
+  </li>
+  
+<% end %>
+  		
+  		

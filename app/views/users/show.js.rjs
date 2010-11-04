@@ -1,0 +1,4 @@
+page.insert_html :bottom, :profile_cats_list, :partial => 'cat'
+if @cats.current_page >= @cats.total_pages
+	page[:more_cats].hide
+end

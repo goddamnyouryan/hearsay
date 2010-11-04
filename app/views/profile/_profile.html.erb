@@ -1,0 +1,23 @@
+<div id="profile">
+	<%= render :partial => 'profile/image' %>
+	<h3>
+		<%= @user.name %>
+		<% if @user == current_user %>
+			<%= link_to "(edit)", :controller => 'profile', :action => 'edit' %>
+		<% end %>	<br />
+		<%= @profile.location %><br />
+		<%= @profile.gender %><br />
+		<% unless @profile.birthday.nil? %>
+			<%= age(@profile.birthday) %> years old
+		<% end %>
+	</h3>
+	
+</div>
+	
+	<div class="clear"></div>
+		
+	<ul id="profile_links">
+		<li><%= link_to("#{image_tag("event_pic.png")} pictures (#{@user.images.size})", user_images_path(@user))%></li>
+		<li><%= link_to("#{image_tag("event_friend.png", :style => 'position:relative;top:3px;')} friends (#{@user.friends.size})", user_friends_path(@user))%></li>
+	</ul>
+		

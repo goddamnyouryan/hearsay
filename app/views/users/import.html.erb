@@ -1,0 +1,30 @@
+<%= render :partial => "setup_nav" %>
+
+<%= title "#{@users.count} contacts on HEARSAY", :h2 %>
+<h3>view their profiles and add them below</h3>
+<ul id="users_list">
+	<% @users.each do |u| %>
+		<%= render :partial => 'friends/meta', :locals => { :user => u } %>
+	<% end %>
+</ul>
+
+<div id="invite">
+<h3><%= "#{@contacts.count} of your email contacts are NOT on HEARSAY, why don't you invite them?" %></h3>
+
+<% form_tag :controller => 'users', :action => 'invite' do %>
+	<ul>				
+		<% for email in @contacts %>
+			<li>
+				<%= check_box_tag "email_ids[]", email[1] %>
+				<span style="font-weight:bold;"><%= email[0] %></span> <%= email[1] %>
+			</li>
+		<% end %>
+	</ul>	
+	
+	<span style="float:right;margin-top:5px;">
+		<%= link_to "skip this step", suggestions_path %>
+		<%= submit_tag "invite friends", :class => "button", :style => "margin-left:5px;" %>
+	</span>
+	
+	<% end %>
+</div>

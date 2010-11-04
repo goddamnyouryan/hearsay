@@ -1,0 +1,6 @@
+<li id="<%= comment.answer.id %>_<%=comment.id %>">
+	<p><%= link_to(comment.user.login, :controller => 'users', :action => 'show', :login => comment.user.login) %> <%= comment.message %></p>
+	<p class="small_timeago"><%= distance_of_time_in_words_to_now(comment.created_at) %> ago 
+		<%= link_to_remote "delete", :url => { :controller => 'comments', :action => 'destroy', :poop => comment, :cunt => comment.answer }, :confirm => 'delete this comment?' %>
+	</p>
+</li>

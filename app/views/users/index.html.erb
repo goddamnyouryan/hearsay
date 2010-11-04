@@ -1,0 +1,8 @@
+<%= title "#{pluralize(@user.count, "result")}", :h2 %>
+<h3>your search for '<%= params[:search] %>' yielded <%= pluralize(@user.count, "user") %>:</h3>
+<ul id="users_list">
+	<% @user.each do |u| %>
+		<%= render :partial => 'friends/meta', :locals => { :user => u  } %>
+		<div class="clear"></div>
+	<% end %>
+</ul>

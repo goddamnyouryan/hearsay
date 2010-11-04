@@ -1,0 +1,66 @@
+<% @user_stream.each do |event| %>
+
+		<% if event.kind == "cat" %>
+			<% @message = event.data["message"] %>
+			<% @cat_cat = Cat.find_by_message(@message) %>
+			<li class="event_cat">
+				<%= link_to "#{event.user.login}", :controller => 'users', :action => 'show', :login => event.user.login %> created a new <%= link_to "category", cat_path(@cat_cat.id) %>:
+				<h3 style="color:#00331a;"><%= render :partial => "events/image", :locals => { :event => event } %> <%= link_to "#{@message}", cat_path(@cat_cat) %> <span class="timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span></h3>
+			</li>
+  	<% end %>
+  		
+  	<% if event.kind == "answer" %>
+		  	<% @answer = event.data["message"] %>
+				<% @category = event.data["category"] %>
+				<% @cat = Cat.find_by_message(@category) %>
+				<% @cat_user = event.data["cat_user"] %>
+				<li class="event_response">
+					<%= link_to "#{event.user.login}", :controller => 'users', :action => 'show', :login => event.user.login %> responded to <%= link_to "#{@cat_user}'s", :controller => 'users', :action => 'show', :login => @cat_user %> <%= link_to "category:", cat_path(@cat) %>
+					<h3><%= render :partial => "events/image", :locals => { :event => event } %> <%= @answer %> <span class="timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span></h3>	
+					</li>	
+  	<% end %>
+  	
+  	<% if event.kind == "comment" %>
+	  	<% @comment = event.data["message"] %>
+			<% @com_answer = event.data["answer"] %>
+			<% @answer = Answer.find_by_message(@com_answer) %>
+			<% @answer_cat = @answer.cat %>
+			<% @answer_user = event.data["answer_user"] %>
+			<li class="event_comment">
+				<%= link_to "#{event.user.login}", :controller => 'users', :action => 'show', :login => event.user.login %> commented on  <%= link_to "#{@answer_user}'s", :controller => 'users', :action => 'show', :login => @answer_user %> response to <%= link_to "#{@answer_cat.user.login}'s", :controller => 'users', :action => 'show', :login => @answer_cat.user.login %> <%= link_to "category", cat_path(@answer_cat) %> 
+				<p class="comment">
+					<%= link_to "#{event.user.login}", :controller => 'users', :action => 'show', :login => event.user.login %>: <%= @comment %>
+					<br />
+					<span class="small_timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
+				</p>		
+				</li>
+  	<% end %>
+  	
+  	<% if event.kind == "friend" %>
+	  	<% @friend = event.data["friend"] %>
+	  		<li class="event_friend">
+				<%= link_to "#{event.user.login}", :controller => 'users', :action => 'show', :login => event.user.login %> and <%= link_to "#{@friend}", :controller => 'users', :action => 'show', :login => @friend %> are now friends <span class="small_timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
+				</li>
+  	<% end %>
+  	
+  	<% if event.kind == "photo" %>
+	  	<% @image_id = event.data["image"] %>
+	  	<% @image = Image.find(@image_id) %>
+	  	<% @uploader = event.data["uploader"] %>
+	  	<li class="event_image">
+	  	<% if @uploader == event.user.login %>
+				<%= link_to "#{@uploader}", :controller => 'users', :action => 'show', :login => @uploader %> uploaded a picture of themself.<br />
+				<%= link_to "#{image_tag @image.photo.url(:profile)}", @image %>
+			<% else %>
+				<%= link_to "#{@uploader}", :controller => 'users', :action => 'show', :login => @uploader %> uploaded a picture of <%= link_to "#{event.user.login}.", :controller => 'users', :action => 'show', :login => event.user.login %> <br />
+				<%= link_to "#{image_tag @image.photo.url(:profile)}", @image %>
+  		<% end %>
+  		<span class="timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
+  		</li>
+  	<% end %>
+  
+  <div style="width:100%; border-bottom: 1px solid;margin:20px 0;"></div>
+  	
+<% end %>
+  		
+  		

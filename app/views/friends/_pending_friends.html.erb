@@ -1,0 +1,10 @@
+<% unless @user.pending_friends.empty? %>
+	<h3>pending friendship requests(<%= @user.pending_friends.count %>)</h3>
+	<% current_user.pending_friends.each do |u| %>
+		<%= render :partial => 'friends/meta', :locals => { :user => u } %>
+	<% end %>
+
+<% end %>
+
+
+<div class="clear"></div>

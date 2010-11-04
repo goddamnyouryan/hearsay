@@ -1,0 +1,23 @@
+<%= render :partial => "users/setup_nav" %>
+
+<h2>upload a photo</h2>
+<h3 style="margin: 15px 0;">Welcome to HEARSAY <%= @user.login %>.<br />
+To get started, upload a photo of yourself.</h3> 
+  
+<% form_for :image, :html => {:multipart => true} do |f| %>
+	<%= f.hidden_field :user_id, :value => @user.id %>
+	<%= f.hidden_field :friend_id, :value => current_user.id %>
+	
+<%= f.file_field :photo  %>
+
+<h3 style="margin: 15px 0;">On HEARSAY your friends can also upload photos of you. <br />
+Naturally you can upload photos of your friends too.  <br />
+The highest voted photo of you gets displayed <br />
+as your profile picture.</h3> 
+
+<span style="margin-left:395px;">
+<%= link_to "skip this step", :controller => "profile", :action => "edit" %>
+<%= f.submit "upload photo", :class => "button", :style => "margin-left:5px;" %>
+</span>
+
+<% end %>

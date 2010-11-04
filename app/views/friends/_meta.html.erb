@@ -1,0 +1,44 @@
+<li>
+
+<div id="user_list">
+
+	<% user.images.highest_ranked.each do |i| %>
+	<% @image = i.photo.url(:profile) %>
+<% end %>			
+
+
+<% unless user.images.empty? %>
+	<% if current_user.friends.include?(user) || user == current_user %>
+		<%= link_to("#{image_tag @image}", user_path(:login => user.login), :class=> 'profile_photo' ) %>
+	<% else %>
+		<%= image_tag @image, :class=> 'profile_photo' %>
+	<% end %>
+<% else %>
+		<%= link_to("#{image_tag("profile_no_images_not_friend.png")}", user_path(:login => user.login), :class=> 'profile_photo') %>
+<% end %>
+	
+	<h3>
+		<span id="login"><%= link_to "#{user.login}", user_path(:login => user.login) %></span>
+		<%= render :partial => 'friends/friend', :locals => { :user => user } %><br />
+		<%= user.name %><br />
+		<% unless user.profile.location.nil? %>
+			<%= user.profile.location %>
+		<% end %>
+		<br />
+		<% unless user.profile.birthday.nil? %>
+			<%= user.profile.gender %><br />
+		<% end %>
+		<br />
+		<% unless user.profile.birthday.nil? %>
+			<%= age(user.profile.birthday) %> years old
+		<% end %>
+		<br />
+		<%= link_to("#{image_tag("event_category.png")} categories (#{user.cats.size})", user_path(:login => user.login))%>
+		<%= link_to("#{image_tag("event_friend.png", :style => 'position:relative;top:3px;')} friends (#{user.friends.size})", user_friends_path(user))%>
+	</h3>
+	
+</div>
+	
+	<div class="clear"></div>
+
+</li>

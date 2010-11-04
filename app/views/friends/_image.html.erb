@@ -1,0 +1,18 @@
+<% user.images.highest_ranked.each do |i| %>
+	<% @image = i.photo.url(:profile) %>
+<% end %>			
+
+
+<% unless user.images.empty? %>
+	<% if current_user.friends.include?(user) || user == current_user %>
+		<%= link_to("#{image_tag @image}", user_images_path(user), :class=> 'profile_photo' ) %>
+	<% else %>
+		<%= image_tag @image, :class=> 'profile_photo' %>
+	<% end %>
+<% else %>
+	<% if current_user.friends.include?(user) || user == current_user %>
+		<%= link_to("#{image_tag("profile_no_images.png")}", user_images_path(user), :class=> 'profile_photo') %>
+	<% else %>
+		<%= image_tag("profile_no_images.png", :class=> 'profile_photo') %>
+	<% end %>
+<% end %>

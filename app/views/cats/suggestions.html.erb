@@ -1,0 +1,25 @@
+<%= render :partial => "users/setup_nav" %>
+
+<%= title "create profile categories", :h2 %>
+<h3>your friends will fill out these categories for you.<br />
+Here are some suggestions.  You can always <br />
+create custom ones later on your homepage.
+</h3>
+
+
+<% form_tag :controller => 'cats', :action => 'create_suggestions' do %>
+	<ul id="suggestions">				
+		<% for e in @suggestions %>
+			<li>
+				<%= check_box_tag "suggestion_ids[]", e %>
+				<span style="font-weight:bold;"><%= e %></span>
+			</li>
+		<% end %>
+	</ul>	
+	
+	<span style="margin-left:300px;">
+		<%= link_to "skip this step", home_path %>
+		<%= submit_tag "create categories and finish!", :class => "button" %>
+	</span>
+	
+<% end %>

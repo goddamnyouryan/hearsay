@@ -1,0 +1,4 @@
+page.insert_html :bottom, :stream, :partial => 'stream'
+if @user_stream.current_page >= @user_stream.total_pages
+	page[:more_stream].hide
+end

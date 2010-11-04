@@ -1,0 +1,2 @@
+page.replace_html "#{@answer.id}_vote_score", "#{@answer.reload.votes.size}"
+page.replace_html "#{@answer.id}_vote_form", "✔"

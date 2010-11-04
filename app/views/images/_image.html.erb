@@ -1,0 +1,16 @@
+	<% if image.state == "unread" && image.user == current_user %>
+		<li id ="unread_image">
+	<% else%>
+		<li>
+		<% end %>
+		<%= link_to("#{image_tag image.photo.url(:images)}", image ) %>
+		<div>
+			<p id="<%= image.id %>_rank_score">
+				<%= pluralize(image.ranks.size, "vote") %>
+			</p>
+		</div>
+		
+		<p class="author" style="margin-top:10px;">submitted by: <%= link_to User.find(image.friend_id).login, :controller => 'users', :action => 'show', :login => User.find(image.friend_id).login %>
+		</p>
+		
+	</li>

@@ -1,0 +1,9 @@
+
+
+<% form_for Message.new do |f| %>
+	<%= hidden_field_tag(:recipient_id, @user.id)%>
+	<%= hidden_field_tag(:sender_id, current_user.id)%>
+	<%= f.text_field :subject %>
+	<%= f.text_area :message %>
+	<%= f.submit "Send", :disable_with => 'Sending...' %>
+<% end %>

@@ -1,0 +1,1 @@
+<%= link_to_remote "#{image_tag("private_icon.png", :style => "position:relative;top:8px;")} private", :url => { :action => 'make_public', :cat => @cat }, :html => { :alt => "#{@private_alt}", :title => "#{@private_alt}" } %>

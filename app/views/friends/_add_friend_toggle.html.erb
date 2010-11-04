@@ -1,0 +1,4 @@
+<% remote_form_for(:friendship, :url => user_friends_path(:user_id => current_user.id, :friend_id => u.id)) do |f| %>
+	<img src="http://goddamnyouryan.com/images/ajax-loader.gif" id="busy" style="border:none;margin:10px;display:none;" />
+	<%= submit_tag "+ add friend", :class => 'add_friend' %>
+<% end %>

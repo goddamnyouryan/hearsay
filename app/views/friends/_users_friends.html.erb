@@ -1,0 +1,16 @@
+<% unless @user.friends.empty? %>
+	
+	<ul id="users_list">
+	<% @user.friends.each do |u| %>
+		<%= render :partial => 'friends/meta', :locals => { :user => u } %>
+		<div class="clear"></div>
+	<% end %>
+	</ul>
+	
+<% else %>
+	No one friends. This person must suck.
+<% end %>
+
+
+<div class="clear"></div>
+	

@@ -1,0 +1,26 @@
+<% unless @user == current_user %>
+	
+	<%= title "#{@user.login} has #{pluralize(@user.friends.count, "friend")}", :h2 %>
+	
+		<ul id="users_list">
+			<%= render :partial => 'friends/users_friends' %>
+		</ul>
+
+<% else %>
+
+<%= title "you have #{pluralize(@user.friends.count, "friend")}", :h2 %>
+
+	<ul id="users_list">
+		<%= render :partial => 'friends/pending_friends' %>	
+	</ul>
+	
+
+	<ul id="users_list">
+		<%= render :partial => 'friends/friends' %>
+	</ul>
+	
+	<ul id="users_list">
+		<%= render :partial => 'friends/requested_friends' %>
+	</ul>
+
+<% end %>

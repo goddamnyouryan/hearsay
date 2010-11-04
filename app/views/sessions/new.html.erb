@@ -1,0 +1,57 @@
+<%= title "welcome. Login. Signup." %>
+
+<h1 id="splash">HEARSAY</h1>
+
+<div id="subtitles">
+	<h2><%= @subtitle.rand %></h2>
+	<h3>because who we think we are and what others think of us is often very different.</h3>
+</div>
+
+<div style="float:left;">
+<% form_tag session_path do %>
+	<h3>already a member? login below:</h3>
+
+				<%= text_field_tag 'login', @login, :value => "username or email", :onfocus => "this.value=''" %><br />
+
+				<%= password_field_tag 'password', nil, :value => "username", :onfocus => "this.value=''" %>
+				<% if params[:return_to] %>
+					<%= hidden_field_tag(:return_to, params[:return_to]) %>
+				<% end %> 
+				<div id="options">
+
+					<%= label_tag 'remember_me', 'Remember me' %>
+					<%= check_box_tag 'remember_me', '1', @remember_me %>
+	
+					<%= submit_tag 'Login', :id => "submit", :class => "button" %>
+			
+					<br />
+			
+					<div style="margin: 5px 0 0 45px;"><%= link_to 'Forgot Password?', forgot_password_path %></div>
+				
+				</div>
+
+<% end -%>
+
+</div>
+
+<div class="clear"></div>
+
+<%= link_to 'Sign Up Now!', signup_path, :id => "signup" %>
+
+<div class="clear"></div>
+
+<div class="moreinfo">
+	<h2>what?</h2>
+	<h3>on hearsay you edit your friends profile and they edit yours.</h3>
+</div>
+
+<div class="moreinfo">
+	<h2>how?</h2>
+	<h3>it’s simple. create profile categories that your friends fill out for you. fill out your friends profiles. vote for your favorite responses. the highest rated response gets displayed in the profile.</h3>
+</div>
+
+<div class="moreinfo">
+	<h2>why?</h2>
+	<h3>curiosity about how you are really percieved. learning how much your friends really know about you. the chance to tell your friends what you think of them. </h3>
+</div>
+
