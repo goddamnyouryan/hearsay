@@ -9,40 +9,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101025005255) do
+ActiveRecord::Schema.define(:version => 20071105025159) do
 
   create_table "answers", :force => true do |t|
     t.integer  "cat_id"
     t.integer  "user_id"
-    t.string   "message"
+    t.text     "message",     :limit => 2000
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "votes_count", :default => 0
-    t.string   "state",       :default => "unread"
+    t.integer  "votes_count",                :default => 0
+    t.string   "state",                      :default => "unread"
+    t.integer  "event_id"
   end
 
   create_table "cats", :force => true do |t|
-    t.integer  "user_id",                           :null => false
-    t.string   "message",                           :null => false
+    t.integer  "user_id",                                          :null => false
+    t.text     "message",    :limit => 2000,                        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",      :default => "private"
+    t.string   "state",                     :default => "private"
+    t.integer  "event_id"
   end
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "answer_id"
-    t.string   "message"
+    t.text     "message",         :limit => 2000
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",           :default => "unread"
-    t.string   "submitter_state", :default => "unread"
+    t.string   "state",                          :default => "unread"
+    t.string   "submitter_state",                :default => "unread"
+    t.integer  "event_id"
   end
 
   create_table "events", :force => true do |t|
-    t.integer  "user_id",    :null => false
+    t.integer  "user_id",                   :null => false
     t.string   "kind"
-    t.string   "data"
+    t.text     "data",       :limit => 2000
     t.datetime "created_at"
     t.datetime "updated_at"
   end

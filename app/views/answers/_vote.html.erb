@@ -13,7 +13,7 @@
 		<% end %>
 	</span>
 <% else %>
-	<span style="float: right;">
+	<span style="float: right;" class="hover">
 		<%= link_to "login", :controller => :session, :action => :new, :return_to => request.request_uri %> to vote
 	</span>
 <% end %>	

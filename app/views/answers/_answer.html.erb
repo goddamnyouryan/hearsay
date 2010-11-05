@@ -38,7 +38,7 @@
 				
 			<span class="timeago">
 					<%= distance_of_time_in_words_to_now(answer.created_at) %> ago &nbsp;
-					<% if current_user.id == answer.user_id %>
+					<% if logged_in? && current_user.id == answer.user_id %>
 						<a onclick="if (confirm('delete this comment?')) { new Ajax.Request('/answers/destroy?poop=<%= answer.id %>', {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('C7HfMP3wgMuszJkKmRMSn9zoO2xXXtS181OmG/jzoXg=')}); }; return false;" href="#">delete</a>
 					<% end %>		
 			</span>
