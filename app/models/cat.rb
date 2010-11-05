@@ -8,7 +8,7 @@ class Cat < ActiveRecord::Base
 	
 	
 	def to_param
-		"#{id}-#{message.gsub(/\W/, '-').downcase}"
+		"#{id}-#{message.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
 	end
 	
 
