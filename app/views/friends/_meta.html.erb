@@ -33,7 +33,7 @@
 			<%= age(user.profile.birthday) %> years old
 		<% end %>
 		<br />
-		<%= link_to("#{image_tag("event_category.png")} categories (#{user.cats.size})", user_path(:login => user.login))%>
+		<%= link_to("#{image_tag("event_category.png")} curios (#{user.cats.size})", user_path(:login => user.login))%>
 		<%= link_to("#{image_tag("event_friend.png", :style => 'position:relative;top:3px;')} friends (#{user.friends.size})", user_friends_path(user))%>
 	</h3>
 	

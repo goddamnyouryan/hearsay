@@ -22,6 +22,10 @@ class Cat < ActiveRecord::Base
 		end
 	end
 	
+	def splash_cats
+		find :all, :conditions => ["state in (?)", "public"], :order => 'created_at DESC', :limit => 10
+	end
+	
 	acts_as_state_machine :initial => :private, :column => :state
 
    state :private

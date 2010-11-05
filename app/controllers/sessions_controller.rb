@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
   			redirect_to home_path
   		end
   	end
-  	@subtitle = ['an evolutionary new kind of social network.', 'not your parents social network.', 'like the bastard child of facebook and wikipedia.', 'the social network without the guy from your 3rd period freshman english class.', 'facebook + wikipedia - creepers + honesty = HEARSAY']
+  	@subtitle = ['an evolutionary new kind of social network.', 'not your parents social network.', 'the bastard child of facebook and wikipedia.', 'what do your friends really think of you?', 'facebook + wikipedia - creepers + honesty']
+  	@splash_cats = Cat.find(:all, :conditions => ["state in (?)", "public"], :order => 'created_at DESC', :limit => 10)
   end
 
   def create

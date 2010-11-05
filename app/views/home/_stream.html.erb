@@ -4,7 +4,7 @@
 			<% @message = event.data["message"] %>
 			<% @cat_cat = Cat.find_by_message(@message) %>
 			<li class="event_cat">
-				<%= link_to "#{event.user.login}", :controller => 'users', :action => 'show', :login => event.user.login %> created a new <%= link_to "category", cat_path(@cat_cat.id) %>:
+				<%= link_to "#{event.user.login}", :controller => 'users', :action => 'show', :login => event.user.login %> created a new <%= link_to "curio", cat_path(@cat_cat.id) %>:
 				<h3 style="color:#00331a;"><%= render :partial => "events/image", :locals => { :event => event } %> <%= link_to "#{@message}", cat_path(@cat_cat) %> <span class="timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span></h3>
 			</li>
   	<% end %>

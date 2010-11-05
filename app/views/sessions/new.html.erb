@@ -1,9 +1,11 @@
-<%= title "welcome. Login. Signup." %>
+<%= title "welcome to HEARSAY. Login. Signup." %>
 
 <h1 id="splash">HEARSAY</h1>
 
+<h2 style="margin-bottom:25px;text-align:center;width:965px;"><%= @subtitle.rand %></h2>
+
 <div id="subtitles">
-	<h2><%= @subtitle.rand %></h2>
+	<%= link_to 'Sign Up Now!', signup_path, :id => "signup" %>
 	<h3>because who we think we are and what others think of us is often very different.</h3>
 </div>
 
@@ -36,22 +38,20 @@
 
 <div class="clear"></div>
 
-<%= link_to 'Sign Up Now!', signup_path, :id => "signup" %>
-
-<div class="clear"></div>
-
-<div class="moreinfo">
-	<h2>what?</h2>
-	<h3>on hearsay you edit your friends profile and they edit yours.</h3>
+<div id="splash_cats">
+<h2>recent curios</h2>
+	<%= render :partial => "splash_cats" %>
 </div>
 
-<div class="moreinfo">
-	<h2>how?</h2>
-	<h3>it’s simple. create profile categories that your friends fill out for you. fill out your friends profiles. vote for your favorite responses. the highest rated response gets displayed in the profile.</h3>
-</div>
 
-<div class="moreinfo">
-	<h2>why?</h2>
-	<h3>curiosity about how you are really percieved. learning how much your friends really know about you. the chance to tell your friends what you think of them. </h3>
-</div>
 
+<div id="accordion">
+	<h2 class="accordion_toggle">what?</h2>
+	<h3 class="accordion_content">on hearsay you edit your friends profile and they edit yours.</h3>
+
+	<h2 class="accordion_toggle">how?</h2>
+	<h3 class="accordion_content">it’s simple. create profile categories that your friends fill out for you. fill out your friends profiles. vote for your favorite responses. the highest rated response gets displayed in the profile.</h3>
+
+	<h2 class="accordion_toggle">why?</h2>
+	<h3 class="accordion_content">curiosity about how you are really percieved. learning how much your friends really know about you. the chance to tell your friends what you think of them. </h3>
+</div>

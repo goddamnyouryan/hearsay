@@ -277,6 +277,19 @@ input#login, input#password, .signup {
 	padding-left:5px;
 }
 
+#splash_cats{ float:left;width:600px;margin-top:25px; }
+
+#splash_cat_message a {
+ color:#FFFD4C !important;
+	float:left;
+	margin:11px 0 0 10px;
+	width:530px;
+}
+
+#accordion {float:right;margin:25px 60px 0 0;width:300px; }
+
+.accordion_content { margin-bottom:25px;}
+
 input#login:focus, input#password:focus, .signup:focus { outline: 1px solid #FFFC4B; }
 
 ul#signup_form { margin:25px 0 0 25px; }
@@ -298,8 +311,8 @@ body#logged_out form div#options { margin-left:300px; }
 body#logged_out a#signup {
 	text-indent:-99999px;
 	background:url(../images/signupnow.png) no-repeat;
-	width: 420px;
-	height: 96px;
+	width: 284px;
+	height: 68px;
 	display:block;
 	margin: 25px auto;
 }

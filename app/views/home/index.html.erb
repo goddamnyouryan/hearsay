@@ -18,11 +18,11 @@
 <div class="right_side">
 
 	<% form_remote_for Cat.new do |f| %>
-		<%= f.text_area :message, :value => "create a new profile category...", :onfocus => "this.value=''" %><br />
+		<%= f.text_area :message, :value => "create a new curio...", :onfocus => "this.value=''" %><br />
 		<div style="margin-top: 11px;float:left;">at a loss for what to put here? Get some <%= link_to "suggestions.", suggestions_path %></div>
-		<span style="float:right; margin-top: 3px;" title="Private categories only your friends can view and respond.  Public categories anyone can view." alt="Private categories only your friends can view and respond.  Public categories anyone can view." >
-			public category <%= f.check_box :private %>
-			<%= f.submit "create category", :disable_with => 'creating...', :class => 'button' %>
+		<span style="float:right; margin-top: 3px;" title="Private curios only your friends can view and respond.  Public curios anyone can view." alt="Private curios only your friends can view and respond.  Public curios anyone can view." >
+			public curio <%= f.check_box :private %>
+			<%= f.submit "create curio", :disable_with => 'creating...', :class => 'button' %>
 		</span>
 	<% end %>
 		

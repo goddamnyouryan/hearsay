@@ -34,7 +34,7 @@
 		  	<% @user.cats.each do |c| %>
 		  		<% c.answers.each do |n| %>
 			  		<% if n.state == "unread" %>
-			  			<li id="response"><%= link_to "#{n.user.login}", user_path(:login => n.user.login) %> responded to your <%= link_to "category", cat_path(c) %> <span class="small_timeago"><%= distance_of_time_in_words_to_now(n.created_at) %> ago</span></li>
+			  			<li id="response"><%= link_to "#{n.user.login}", user_path(:login => n.user.login) %> responded to your <%= link_to "curio", cat_path(c) %> <span class="small_timeago"><%= distance_of_time_in_words_to_now(n.created_at) %> ago</span></li>
 			  		<% end %>
 			  	<% end %>
 		  	<% end %>

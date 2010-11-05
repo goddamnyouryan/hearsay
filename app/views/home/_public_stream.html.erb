@@ -1,7 +1,7 @@
 <% @public_stream.each do |c| %>
 <li class="event_cat">
 	<%= link_to "#{c.user.login}", :controller => 'users', :action => 'show', :login => c.user.login %> 
-	created a new category:	
+	created a new curio:	
 	<h3 style="color:#00331a;">
 		<%= render :partial => "events/image", :locals => { :event => c } %> 
 		<%= c.message %> 

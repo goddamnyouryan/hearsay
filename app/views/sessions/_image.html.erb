@@ -1,0 +1,14 @@
+<% unless user.images.empty? %>
+		<% c.user.images.highest_ranked.each do |i| %>
+			<% @image = i.photo.url(:cat) %>
+		<% end %>
+			
+		<%= link_to "#{image_tag @image}", cat_path(c), :style => "float:left;" %>
+		
+
+<% else %>
+
+		<%= link_to("#{image_tag("profile_no_images.png")}", cat_path(c)) %>
+
+<% end %>
+	

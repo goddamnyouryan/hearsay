@@ -4,7 +4,7 @@
 			<% @message = event.data["message"] %>
 			<% @cat = Cat.find_by_message(@message) %>
   		<li id="cat">
-  			created a new <%= link_to "category", cat_path(@cat) %>
+  			created a new <%= link_to "curio", cat_path(@cat) %>
   			<span class="small_timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
   		</li>
   	<% end %>
