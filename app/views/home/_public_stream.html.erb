@@ -4,7 +4,7 @@
 	created a new curio:	
 	<h3 style="color:#00331a;">
 		<%= render :partial => "events/image", :locals => { :event => c } %> 
-		<%= c.message %> 
+		<%= link_to c.message, cat_path(c) %> 
 		<span class="timeago"><%= distance_of_time_in_words_to_now(c.created_at) %> ago</span>
 	</h3>
 </li>

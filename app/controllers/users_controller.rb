@@ -101,10 +101,12 @@ class UsersController < ApplicationController
   private
   
   def mark_unread_friendships_as_read
-  	if current_user.friends.include?(@user)
-  		@friendship = Friendship.find_by_user_id_and_friend_id(current_user.id, @user.id)
-			@friendship.view!
-  	end
+  	if logged_in?
+	  	if current_user.friends.include?(@user)
+	  		@friendship = Friendship.find_by_user_id_and_friend_id(current_user.id, @user.id)
+				@friendship.view!
+	  	end
+	  end
   end
   
 end
