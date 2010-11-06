@@ -341,7 +341,7 @@ div#profile h2 {  margin-bottom: 10px; }
 div#profile .profile_photo { float: left; border: 5px solid #ccc; height: 90px; }
 div#profile .profile_photo:hover { outline: 1px solid #00331a; }
 
-div#profile h3 { float:left; margin:5px 0 0 7px;}
+div#profile h3 { float:left; margin:5px 0 0 7px; width: 260px;}
 
 div#profile h3 a { font-size: 14px;  }
 
