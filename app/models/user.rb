@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
-    u = find_in_state :first, :active, :conditions => ["LOWER(email) = ? OR LOWER(login) = ?",login,login]  # need to get the salt
+    u = find_in_state :first, :active, :conditions => ["email = ? OR login = ?",login,login]  # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
   
