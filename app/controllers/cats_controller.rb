@@ -108,6 +108,12 @@ class CatsController < ApplicationController
 			cat = current_user.cats.create
 			cat.message = c
 			cat.save!
+			event = cat.user.events.create
+			event.kind = "cat"
+			event.data = { "message" => "#{c}" }
+			event.save!
+			cat.event_id = event.id
+			cat.save!
 		end
 		flash[:notice] = "Categories created"
 		redirect_to :controller => 'users', :action => 'show', :login => current_user.login
