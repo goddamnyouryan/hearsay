@@ -1,0 +1,22 @@
+<li>
+		<div class ="profile_cat">
+			<h3>
+				<%= link_to cat.message, cat_path(cat), :class => "profile_cat" %>
+				<span class="timeago">
+					<%= distance_of_time_in_words_to_now(cat.created_at) %> ago
+						<%= link_to('delete', cat_path(cat), :method => :delete, :confirm => 'Really delete category?', :style => "margin-left:5px;color:#666;", :title => "You can only delete categorys that don't have any responses.", :alt => "You can only delete categorys that don't have any responses.") %>
+				</span>
+			</h3>	
+			
+			
+			
+			<div style="padding: 10px 0;">
+
+				<span class="response_count"><%= cat.answers.count %></span>
+				<%= link_to "responses", cat_path(cat) %>
+			</div>
+			
+		</div>
+</li>
+
+<div style="width:100%; border-bottom: 1px solid;margin:20px 0;"></div>

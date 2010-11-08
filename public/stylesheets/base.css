@@ -29,11 +29,13 @@ div#flash-error {
 
 /* === ERROR MESSAGES === */
 div#errorExplanation {
-	
+	color:#97212F;
+	font-size:24px;
 }
 
 div#errorExplanation h2 {
-	
+	color:#97212F;
+	font-size:24px;
 }
 
 div#errorExplanation p {
@@ -60,7 +62,7 @@ div.fieldWithErrors label {
 div.fieldWithErrors input, div.fieldWithErrors select, 
 div.fieldWithErrors textarea
 {
-	
+	outline: 1px solid #97212F;
 }
 
 /* Normalizes margin, padding */
@@ -81,7 +83,6 @@ html,body { height:100%; }
 
 body {
 	color: #999;
-	letter-spacing:-1px;
   background: #e3e3e3 url(../images/bg.jpg) repeat-x;
 	font-family: 'Helvetica Neue', Helvetica, Arial, Sans-serif;
 	font-size:14px;
@@ -127,6 +128,7 @@ h2 {
 	font-size: 48px;
 	color: #00331a;
 	font-weight:bold;
+	line-height:48px;
 }
 
 h2 a { color:#666; }
@@ -136,7 +138,7 @@ h3 {
 	font-size: 24px;
 	color: #999;
 	font-weight: normal;
-	line-height: 22px;
+	line-height: 24px;
 }
 
 h3 a {
@@ -238,14 +240,13 @@ footer a:hover {
 
 #pending_friends_alert {
 	background:#97212F;
-	border:1px solid #FFFD4C;
-	color:#FFFD4C;
+	color:#FFF;
 	font-size:10px;
-	margin:-1px 0 0 -10px;
+	margin:-4px 0 0 -12px;
 	padding:1px 3px;
 	position:absolute;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
 	
 }
 /***********SPLASH / LOGIN***************/
@@ -397,7 +398,7 @@ textarea#cat_message {
 #toggle_link { 
 	border-bottom:1px solid;
 	font-size:14px;
-	margin-left:-43px;
+	margin-left:-50px;
 }
 
 #toggle_selected {

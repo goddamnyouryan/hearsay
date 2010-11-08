@@ -45,7 +45,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :messages
   map.resources :comments
   map.resources :events
-
+  
+	map.connect '/passwords/update_after_forgetting', :controller => 'passwords', :action => "update_after_forgetting"
 	map.connect '/answers/destroy', :controller => 'answers', :action => 'destroy' 
   map.connect '/profile', :controller => 'profile', :action => 'edit'
   map.connect '/users/:id/friends/:user_id', :controller => 'friends', :action => 'update'

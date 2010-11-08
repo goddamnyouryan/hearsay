@@ -13,7 +13,7 @@
 <% form_tag session_path do %>
 	<h3>already a member? login below:</h3>
 
-				<%= text_field_tag 'login', @login, :value => "username or email", :onfocus => "this.value=''" %><br />
+				<%= text_field_tag 'login', @login, :value => "username or email", :onfocus => "if (this.value = 'username or email') this.value = ''" %><br />
 
 				<%= password_field_tag 'password', nil, :value => "username", :onfocus => "this.value=''" %>
 				<% if params[:return_to] %>
