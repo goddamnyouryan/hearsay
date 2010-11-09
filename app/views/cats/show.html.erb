@@ -54,7 +54,7 @@ top:8px;") %>
 	<% form_remote_for Answer.new do |f| %>
 		<%= hidden_field_tag(:cat_id, @cat.id)%>
 		<%= hidden_field_tag(:user_id, current_user.id)%>
-		<%= f.text_area :message, :value => "new response...", :onfocus => "this.value=''" %><br />
+		<%= f.text_area :message, :value => "new response...", :onfocus => "if (this.value == 'new response...') this.value = ''" %><br />
 		<%= f.submit "respond", :disable_with => 'responding...', :class => "button", :style => "margin-top: 3px;float:right;" %>
 	<% end %>
 
