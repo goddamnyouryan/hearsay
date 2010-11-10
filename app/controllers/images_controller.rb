@@ -15,10 +15,12 @@ class ImagesController < ApplicationController
   	@user = User.find(params[:user_id])
   	@image = Image.create(params[:image])
   	
-  	event = @user.events.create
-		event.kind = "photo"
-		event.data = { "image" => "#{@image.id}", "uploader" => "#{current_user.login}" }
-		event.save!
+  	if params[:image]
+	  	event = @user.events.create
+			event.kind = "photo"
+			event.data = { "image" => "#{@image.id}", "uploader" => "#{current_user.login}" }
+			event.save!
+		end
 			
 		redirect_to user_images_path(@user)
 	end

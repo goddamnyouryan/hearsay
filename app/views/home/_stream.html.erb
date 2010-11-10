@@ -44,16 +44,22 @@
   	<% end %>
   	
   	<% if event.kind == "photo" %>
-	  	<% @image_id = event.data["image"] %>
-	  	<% @image = Image.find(@image_id) %>
+  		<% if event.data["image"].exists? %>
+	  		<% @image_id = event.data["image"] %>
+	  		<% @image = Image.find(@image_id) %>
+	  	<% end %>
 	  	<% @uploader = event.data["uploader"] %>
 	  	<li class="event_image">
 	  	<% if @uploader == event.user.login %>
 				<%= link_to "#{@uploader}", :controller => 'users', :action => 'show', :login => @uploader %> uploaded a picture of themself.<br />
-				<%= link_to "#{image_tag @image.photo.url(:profile)}", @image %>
+				<% if event.data["image"].exists? %>
+					<%= link_to "#{image_tag @image.photo.url(:profile)}", @image %>
+				<% end %>
 			<% else %>
 				<%= link_to "#{@uploader}", :controller => 'users', :action => 'show', :login => @uploader %> uploaded a picture of <%= link_to "#{event.user.login}.", :controller => 'users', :action => 'show', :login => event.user.login %> <br />
-				<%= link_to "#{image_tag @image.photo.url(:profile)}", @image %>
+				<% if event.data["image"].exists? %>
+					<%= link_to "#{image_tag @image.photo.url(:profile)}", @image %>
+				<% end %>
   		<% end %>
   		<span class="timeago"><%= distance_of_time_in_words_to_now(event.created_at) %> ago</span>
   		</li>
