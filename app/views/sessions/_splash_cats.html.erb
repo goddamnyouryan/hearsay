@@ -2,7 +2,7 @@
 
 <% @splash_cats.each do |c| %>
 
-<li style="margin-top:25px;">
+<li style="margin-top:25px;word-wrap:break-word;">
 	<h3>
 		<%= render :partial => "image", :locals => { :user => c.user, :c => c } %> 
 		<span id="splash_cat_message"><%= link_to c.message, cat_path(c) %></span>

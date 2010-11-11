@@ -2,7 +2,7 @@
 
 <%= render :partial => 'image' %>
 	
-	<h2 style="font-weight:normal !important; margin: -10px 0 0 5px;float:left;width:900px;">
+	<h2 style="font-weight:normal !important; margin: -10px 0 0 5px;float:left;width:900px;word-wrap:break-word;">
 		<%= @cat.message %>
 		<% if @cat.user == current_user %>
 			<% if @cat.state == "private" %>
