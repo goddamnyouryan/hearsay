@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates_presence_of :login
   validates_length_of :login, :within => 3..40
   validates_uniqueness_of :login, :case_sensitive => false
-  validates_format_of :login, :with => /^[-a-z]+$/, :message => MSG_LOGIN_BAD
+  validates_format_of :login, :with => /^[-a-z]+$/i, :message => MSG_LOGIN_BAD
   validates_format_of :name, :with => RE_NAME_OK, :message => MSG_NAME_BAD, :allow_nil => true
   validates_length_of :name, :maximum => 100
   validates_presence_of :email
