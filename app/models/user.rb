@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
-    u = find_in_state :first, :active, :conditions => ["email = ? OR login = ?",login,login]  # need to get the salt
+    u = find_in_state :first, :active, :conditions => ["LOWER(email) = ? OR LOWER(login) = ?",login.downcase,login.downcase]  # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
   
@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   
   def self.search(search)
   	if search
-  		find(:all, :conditions => ['LOWER(login) LIKE ? OR LOWER(name) LIKE ? OR LOWER(email) LIKE ? AND state LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "active"], :order => "login asc")
+  		find(:all, :conditions => ['LOWER(login) LIKE ? OR LOWER(name) LIKE ? OR LOWER(email) LIKE ? AND state LIKE ?', "%#{search.to_s.downcase}%", "%#{search.to_s.downcase}%", "%#{search.to_s.downcase}%", "active"], :order => "login asc")
   	else
   		find(:all)
   	end
