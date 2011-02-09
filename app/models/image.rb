@@ -8,7 +8,7 @@ class Image < ActiveRecord::Base
 																					:images => "250x250#", 
 																					:profile => "90x90#", 
 																					:cat => "60x60#", 
-																					:small => "30x30#"
+																					:little => "30x30#"
 																					}, 
 														:storage => :s3, :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", :path => ':id/:style'
 														

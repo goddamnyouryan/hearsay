@@ -1,6 +1,6 @@
 <% unless event.user.images.empty? %>
 		<% event.user.images.highest_ranked.each do |i| %>
-  		<% @event_image = i.photo.url(:small) %>
+  		<% @event_image = i.photo.url(:little) %>
 		<% end %>	
 		<%= link_to("#{image_tag @event_image}", :controller => 'users', :action => 'show', :login => event.user.login) %>
 <% else %>
